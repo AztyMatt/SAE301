@@ -1,0 +1,15 @@
+<a href="accueil">Accueil</a>
+<a href="manifs">Manifs</a>
+
+{% if is_granted('ROLE_ADMIN') %}
+    <a href="admin">Admin</a>
+{% endif %}
+
+
+{% if app.user %}
+    <a href="logout">Deconnection</a>
+    Bienvenue {{ app.user.userIdentifier }}
+{% else %}
+    <a href="login">Connection</a>
+    <a href="register">Inscription</a>
+{% endif %}

@@ -4,4 +4,13 @@
 
 {% block body %}
     <h1>Les manifestations :</h1>
+
+    {% for manifestation in manifs %}
+        <div>
+            <img src="{{ asset('images/' ~ manifestation.getManifAffiche()) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+            <h2>{{ manifestation.getManifTitre() }}</h2>
+            <p>{{ manifestation.getManifGenre() }}</p>
+            <p>{{ manifestation.getManifDate()|date('d-m-Y') }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}

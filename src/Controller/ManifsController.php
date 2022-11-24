@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use App\Repository\ManifestationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ManifsController extends AbstractController
 {
     #[Route('/manifs', name: 'app_manifs')]
-    public function index(): Response
+    public function listeManifs(ManifestationRepository $manifsRepository)
     {
+        $manifs = $manifsRepository->findAll();
+
         return $this->render('manifs/index.html.twig', [
-            'controller_name' => 'ManifsController',
+            'manifs' => $manifs
         ]);
     }
 }

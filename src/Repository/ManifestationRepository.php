@@ -39,20 +39,16 @@ class ManifestationRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Manifestation[] Returns an array of Manifestation objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByTitre($value): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.manif_titre LIKE :val')
+            ->setParameter('val', $value.'%')
+            ->orderBy('m.manif_id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Manifestation
 //    {

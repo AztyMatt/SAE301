@@ -1,0 +1,12 @@
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+        {% for key in search %}
+                <div>
+                        <img src="{{ asset('images/' ~ key.getManifAffiche()) }}" alt="Affiche de '{{ key.getManifTitre() }}'"/>
+                        <h2>{{ key.getManifTitre() }}</h2>
+                        <p>{{ key.getManifGenre() }}</p>
+                        <p>{{ key.getManifDate()|date('d-m-Y') }}</p>
+                </div>
+        {% endfor %}
+{% endblock %}

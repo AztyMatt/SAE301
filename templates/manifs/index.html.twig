@@ -1,9 +1,15 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>{% endblock %}
 
 {% block title %}Manifestations{% endblock %}
 
 {% block body %}
     <h1>Les manifestations :</h1>
+
+    <form name="search" type="GET">
+        <input type="search" name="search-input" />
+        <span class="material-icons" aria-hidden="true" data-icon="&#xe000;" onclick="search.submit()">search</span>
+    </form>
 
     {% for manifestation in manifs %}
         <div>

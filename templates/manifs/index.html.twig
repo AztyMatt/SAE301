@@ -1,21 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>{% endblock %}
 
-{% block title %}Manifestations{% endblock %}
+{% block title %}Spectacles{% endblock %}
 
 {% block body %}
-    <h1>Les manifestations :</h1>
+    <h1>Nos spectacles :</h1>
 
-    <form name="search" type="GET">
+    {# <form name="search" type="GET" action="">
         <input type="search" name="search-input" />
         <span class="material-icons" aria-hidden="true" data-icon="&#xe000;" onclick="search.submit()">search</span>
     </form>
+    Créer form sur le Controller pour pouvoir bien le soumettre et que SearchController puisse récupérer les données envoyés par le form
+    #}
 
     {% for manifestation in manifs %}
         <div>
-            <img src="{{ asset('images/' ~ manifestation.getManifAffiche()) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+            <img src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche()) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
             <h2>{{ manifestation.getManifTitre() }}</h2>
             <p>{{ manifestation.getManifGenre() }}</p>
+            <p>{{ manifestation.salle.getSalleNom() }}</p>
             <p>{{ manifestation.getManifDate()|date('d-m-Y') }}</p>
         </div>
     {% endfor %}

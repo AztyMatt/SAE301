@@ -12,7 +12,7 @@ class Manifestation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $manif_id = null;
+    private ?int $id = null;
 
     #[ORM\Column(length: 30)]
     private ?string $manif_titre = null;
@@ -38,9 +38,16 @@ class Manifestation
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $manif_horaire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'manifestations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Salle $salle = null;
+
+    #[ORM\Column]
+    private ?int $salle_id = null;
+
     public function getId(): ?int
     {
-        return $this->manif_id;
+        return $this->id;
     }
 
     public function getManifTitre(): ?string
@@ -135,6 +142,30 @@ class Manifestation
     public function setManifHoraire(\DateTimeInterface $manif_horaire): self
     {
         $this->manif_horaire = $manif_horaire;
+
+        return $this;
+    }
+
+    public function getSalle(): ?Salle
+    {
+        return $this->salle;
+    }
+
+    public function setSalle(?Salle $salle): self
+    {
+        $this->salle = $salle;
+
+        return $this;
+    }
+
+    public function getSalleId(): ?int
+    {
+        return $this->salle_id;
+    }
+
+    public function setSalleId(int $salle_id): self
+    {
+        $this->salle_id = $salle_id;
 
         return $this;
     }

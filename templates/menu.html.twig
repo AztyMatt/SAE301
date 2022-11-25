@@ -1,15 +1,18 @@
-<a href="accueil">Accueil</a>
-<a href="manifs">Manifs</a>
+<nav>
+    <a href="accueil">Accueil</a>
+    <a href="manifs">Nos spectacles</a>
+    <a href="salles">Nos salles</a>
 
-{% if is_granted('ROLE_ADMIN') %}
-    <a href="admin">Admin</a>
-{% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="admin">Admin</a>
+    {% endif %}
 
 
-{% if app.user %}
-    <a href="logout">Deconnexion</a>
-    Bienvenue {{ app.user.userIdentifier }}
-{% else %}
-    <a href="login">Connexion</a>
-    <a href="register">Inscription</a>
-{% endif %}
+    {% if app.user %}
+        <a href="logout">Deconnexion</a>
+        Bienvenue {{ app.user.userIdentifier }}
+    {% else %}
+        <a href="login">Connexion</a>
+        <a href="register">Inscription</a>
+    {% endif %}
+</nav>

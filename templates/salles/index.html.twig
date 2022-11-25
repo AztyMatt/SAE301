@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Spectacles{% endblock %}
+
+{% block body %}
+    <h1>Nos salles :</h1>
+
+    {% for salle in salles %}
+        <div>
+            <img src="{{ asset('images/salles/' ~ salle.getSalleImage()) }}" alt="Image de '{{ salle.getSalleNom() }}'"/>
+            <p>{{ salle.getSalleNom() }}</p>
+            <p>{{ salle.getSalleAdresse() }}</p>
+            <p>{{ salle.getSalleCapacite() }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

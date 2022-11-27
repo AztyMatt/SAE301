@@ -6,12 +6,9 @@
 {% block body %}
     <h1>Nos spectacles :</h1>
 
-    {# <form name="search" type="GET" action="">
-        <input type="search" name="search-input" />
-        <span class="material-icons" aria-hidden="true" data-icon="&#xe000;" onclick="search.submit()">search</span>
-    </form>
-    Créer form sur le Controller pour pouvoir bien le soumettre et que SearchController puisse récupérer les données envoyés par le form
-    #}
+    {{ form_start(form, {'attr': {'action': path('app_search')} }) }}
+    {{ form_widget(form.search) }}
+    {{ form_end(form) }}
 
     {% for manifestation in manifs %}
         <div>

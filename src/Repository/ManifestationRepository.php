@@ -44,7 +44,7 @@ class ManifestationRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')
             ->andWhere('m.manif_titre LIKE :val')
             ->setParameter('val', $value.'%')
-            ->orderBy('m.manif_id', 'ASC')
+            ->orderBy('m.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;

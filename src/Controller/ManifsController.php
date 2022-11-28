@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ManifsController extends AbstractController
 {
-    #[Route(path: '/manifs', name: 'app_searchBar_manifs')]
+    #[Route(path: '/manifs', name: 'app_manifs')]
     public function searchBar(ManifestationRepository $manifsRepository)
     {
         $form = $this->createFormBuilder()
@@ -30,7 +30,7 @@ class ManifsController extends AbstractController
     #[Route(path: '/search', name: 'app_search')]
     public function search( Request $request, ManifestationRepository $ManifestationRepository)
     {
-        $search = dump($request->request->all('form')['search']);
+        $search = $request->request->all('form')['search'];
         $result = $ManifestationRepository->findByTitre($search);
         return $this->render('search/index.html.twig', [
            'search' => $result

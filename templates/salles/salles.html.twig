@@ -2,15 +2,16 @@
 
 {% block title %}Spectacles{% endblock %}
 
+{% block H1 %}Nos salles{% endblock %}
 {% block body %}
-    <h1>Nos salles :</h1>
-
+<div class="flex-space-around presentation-spectacle">
     {% for salle in salles %}
-        <div>
-            <img src="{{ asset('images/salles/' ~ salle.getSalleImage()) }}" alt="Image de '{{ salle.getSalleNom() }}'"/>
-            <p>{{ salle.getSalleNom() }}</p>
-            <p>{{ salle.getSalleAdresse() }}</p>
-            <p>{{ salle.getSalleCapacite() }}</p>
+        <div class="flex-column taille-image img-salles background margin-20px">
+            <img src="{{ asset('images/salles/' ~ salle.getSalleImage) }}" alt="Image de '{{ salle.getSalleNom() }}'"/>
+            <h2>{{ salle.getSalleNom }}</h2>
+            <p class="margin-5px">Adresse :{{ salle.getSalleAdresse }}</p>
+            <p class="margin-5px">Places : {{ salle.getSalleCapacite() }}</p>
         </div>
     {% endfor %}
+</div>
 {% endblock %}

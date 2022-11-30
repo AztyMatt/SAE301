@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block title %}Spectacles{% endblock %}
 
+{% block H1 %}Résultat(s) de votre recherche{% endblock %}
 {% block body %}
-        {% for key in search %}
-                <div>
-                        <img src="{{ asset('images/manifs/' ~ key.getManifAffiche()) }}" alt="Affiche de '{{ key.getManifTitre() }}'"/>
-                        <h2>{{ key.getManifTitre() }}</h2>
-                        <p>{{ key.getManifGenre() }}</p>
-                        <p>{{ key.getManifDate()|date('d-m-Y') }}</p>
-                </div>
-        {% endfor %}
+        <div class="flex-space-around presentation-spectacle">
+                {% for key in search %}
+                        <div class="flex-column taille-image background margin-20px">
+                                <a href="{{ path('manifs_show', {'id': key.getId }) }}">
+                                        <img src="{{ asset('images/manifs/' ~ key.getManifAffiche) }}" alt="Affiche de '{{ key.getManifTitre() }}'"/>
+                                        <h2>{{ key.getManifTitre }}</h2>
+                                        <p class="margin-5px">{{ key.getManifGenre }}</p>
+                                        <p class="margin-5px">{{ key.salle.getSalleNom }}</p>
+                                        <p class="margin-5px">{{ key.getManifDate|date('d-m-Y') }}</p>
+                                </a>
+                        </div>
+                {% endfor %}
+        </div>
 {% endblock %}

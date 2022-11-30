@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Manifestation;
 use App\Repository\ManifestationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,6 +27,15 @@ class ManifsController extends AbstractController
             'manifs' => $manifs
         ]);
     }
+
+    #[Route('/manifs/{id}', name: 'app_show', methods: ['GET'])]
+    public function show(Manifestation $manifs)
+    {
+        return $this->render('manifs/show.html.twig', [
+            'manifestation' => $manifs ,
+        ]);
+    }
+
 
     #[Route(path: '/search', name: 'app_search')]
     public function search( Request $request, ManifestationRepository $ManifestationRepository)

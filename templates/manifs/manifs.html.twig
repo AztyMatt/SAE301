@@ -3,20 +3,29 @@
 
 {% block title %}Spectacles{% endblock %}
 
-{% block body %}
-    <h1>Nos spectacles :</h1>
-
-    {{ form_start(form, {'attr': {'action': path('app_search')} }) }}
+{% block H1_position %}
+    <div class="flex-space-between">
+{% endblock %}
+{% block H1 %}Nos spectacles{% endblock %}
+{% block search %}
+    {{ form_start(form, {'attr': {'action': path('app_search'), 'class':'recherche' } }) }}
     {{ form_widget(form.search) }}
+    <span class="material-icons" aria-hidden="true" data-icon="&#xe000;" onclick="search.submit()">search</span>
     {{ form_end(form) }}
+{% endblock %}
 
+{% block body %}
+    <div class="flex-space-around presentation-spectacle">
     {% for manifestation in manifs %}
-        <div>
-            <img src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche()) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
-            <h2>{{ manifestation.getManifTitre() }}</h2>
-            <p>{{ manifestation.getManifGenre() }}</p>
-            <p>{{ manifestation.salle.getSalleNom() }}</p>
-            <p>{{ manifestation.getManifDate()|date('d-m-Y') }}</p>
-        </div>
+            <div class="flex-column taille-image background margin-20px">
+                <a href="{{ path('app_show', {'id': manifestation.getId }) }}">
+                    <img src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+                    <h2>{{ manifestation.getManifTitre }}</h2>
+                    <p class="margin-5px">{{ manifestation.getManifGenre }}</p>
+                    <p class="margin-5px">{{ manifestation.salle.getSalleNom }}</p>
+                    <p class="margin-5px">{{ manifestation.getManifDate|date('d-m-Y') }}</p>
+                </a>
+            </div>
     {% endfor %}
+    </div>
 {% endblock %}

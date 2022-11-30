@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ manifestation.getManifTitre }}{% endblock %}
+
+{% block H1 %}{{ manifestation.getManifTitre }}{% endblock %}
+{% block body %}
+    <div class="flex-space-between margin-bottom-100px background">
+        <div class="flex">
+            <img class="affiche" src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+            <div class="flex-column flex-space-between">
+                <div>
+                    <p class="margin-5px side">Genre : {{ manifestation.getManifGenre }}</p>
+                    <p class="margin-5px side">{{ manifestation.getManifDescription }}</p>
+                    <p class="margin-5px side">Casting : {{ manifestation.getManifCasting }}</p>
+                    <p class="margin-5px side">Salle : {{ manifestation.salle.getSalleNom }}</p>
+                    <p class="margin-5px side">Le {{ manifestation.getManifDate|date('d/m/Y') }} à {{ manifestation.getManifHoraire|date('H:i') }}</p>
+                </div>
+                <div class="flex flex-end">
+                    <button class="bouton-achat margin-10px side">Acheter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -2,13 +2,9 @@
 
 {% block title %}Connection{% endblock %}
 
-{% block H1 %}Connection{% endblock %}
-{% block body %}
+{% block H1 %}<h1 id="titre">Connection</h1>{% endblock %}
+{% block content %}
 <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
@@ -29,6 +25,10 @@
         <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Votre mot de passe" required>
     </div>
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+    {% if error %}
+        <div class="color-red p-mini">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
 
     <input class="bouton" type="submit" value="Se connecter">
 </form>

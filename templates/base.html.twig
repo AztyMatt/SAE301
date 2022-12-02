@@ -7,6 +7,7 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             <link href="{{ asset('styles/style.css') }}" rel="stylesheet" />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
         {% endblock %}
 
         {% block javascripts %}
@@ -16,20 +17,18 @@
     <body>
         {{ include('header.html.twig') }}
         <main>
-            {% block H1_position %}
-                <div class="flex-center">
-            {% endblock %}
-                <div class="text-left" id="titre">
-                    <h1>
-                    {% block H1 %}
-                    {% endblock %}
-                    </h1>
-                </div>
-                {% block search %}{% endblock %}
-            </div>
-                {% block body %}
+            {% block top %}
+            <div class="text-center">
+                {% block H1 %}
                 {% endblock %}
+            </div>
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
         </main>
         {{ include('footer.html.twig') }}
     </body>
+    <script type="text/javascript" src="{{ asset('js/style.js') }}"></script>
+    {% block javascripts2 %}
+    {% endblock %}
 </html>

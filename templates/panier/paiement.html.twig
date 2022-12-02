@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block H1 %}<h1 id="titre">Paiement</h1>{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <p class="color-red p-mini margin-top-20px margin-bottom-50px">Toutes nos transactions sont sécurisées et chiffrées</p>
+    </div>
+
+    <div class="flex-column">
+        <div class="section-payement-methode">
+            <div class="section-content-payement">
+                <div class="flex-space-between">
+                    <div>
+                        <img src="https://cdn.shopify.com/shopifycloud/shopify/assets/payment_icons/visa-319d545c6fd255c9aad5eeaad21fd6f7f7b4fdbdb1a35ce83b89cca12a187f00.svg" alt="logo visa">
+                        <img src="https://cdn.shopify.com/shopifycloud/shopify/assets/payment_icons/master-173035bc8124581983d4efa50cf8626e8553c2b311353fbf67485f9c1a2b88d1.svg" alt="logo mastercard">
+                        <img src="https://cdn.shopify.com/shopifycloud/shopify/assets/payment_icons/american_express-2264c9b8b57b23b0b0831827e90cd7bcda2836adc42a912ebedf545dead35b20.svg" alt="logo amex">
+                    </div>
+                </div>
+
+                <form class="form-paiement" action="">
+                    <input id="iban" type="tel" maxlength="19" pattern="\d*" placeholder="Numéro de carte" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase()" placeholder="Nom du titulaire" required>
+                    <div class="flex-space-between">
+                        <input type="month" placeholder="Date d'expiration" required>
+                        <input type="tel" maxlength="3" placeholder="Cryptogramme visuel" required>
+                    </div>
+                </form>
+            </div>
+            <div class="flex-center">
+                <a class="bouton-commander text-center" href="{{ path('app_paiement_effectue') }}">valider ma commande</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts2 %}
+    <script>
+        document.getElementById('iban').addEventListener('input', function (e) {
+            e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('js/panier.js') }}"></script>
+{% endblock %}

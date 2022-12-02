@@ -1,31 +1,32 @@
 {% extends 'base.html.twig' %}
-{% block javascripts %}<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>{% endblock %}
-
 {% block title %}Spectacles{% endblock %}
 
-{% block H1_position %}
+{% block top %}
     <div class="flex-space-between">
-{% endblock %}
-{% block H1 %}Nos spectacles{% endblock %}
-{% block search %}
-    {{ form_start(form, {'attr': {'action': path('app_search'), 'class':'recherche' } }) }}
-    {{ form_widget(form.search) }}
-    <span class="material-icons" aria-hidden="true" data-icon="&#xe000;" onclick="search.submit()">search</span>
-    {{ form_end(form) }}
+        <div><h1 class="text-left" id="titre">Nos spectacles</h1></div>
+        {{ form_start(form, {'attr': {'action': path('app_search'), 'class':'recherche' } }) }}
+        {{ form_widget(form.search) }}
+        <span class="material-icons" aria-hidden="true" data-icon="&#xe000;" onclick="search.submit()">search</span>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
 
-{% block body %}
+{% block content %}
     <div class="flex-space-around presentation-spectacle">
     {% for manifestation in manifs %}
-            <div class="flex-column taille-image background margin-20px">
-                <a href="{{ path('app_show', {'id': manifestation.getId }) }}">
-                    <img src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
-                    <h2>{{ manifestation.getManifTitre }}</h2>
-                    <p class="margin-5px">{{ manifestation.getManifGenre }}</p>
-                    <p class="margin-5px">{{ manifestation.salle.getSalleNom }}</p>
-                    <p class="margin-5px">{{ manifestation.getManifDate|date('d-m-Y') }}</p>
-                </a>
+            <div class="flex-column flex-center taille-image">
+                <img src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+                <h2 class="manif_titre">{{ manifestation.getManifTitre }}</h2>
+                <p class="margin-5px">{{ manifestation.getManifGenre }}</p>
+                <p class="margin-5px">{{ manifestation.salle.getSalleNom }}</p>
+                <p class="margin-5px">{{ manifestation.getManifDate|date('d/m/Y') }}</p>
+                <div class="text-center margin-20px">
+                     <a class="bouton-commander text-center" href="{{ path('app_show', {'id': manifestation.getId }) }}">Détails</a>
+                 </div>
             </div>
     {% endfor %}
     </div>
+{% endblock %}
+{% block javascripts2 %}
+    <script type="text/javascript" src="{{ asset('js/general.js') }}"></script>
 {% endblock %}

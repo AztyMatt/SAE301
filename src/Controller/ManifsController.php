@@ -43,7 +43,8 @@ class ManifsController extends AbstractController
         $search = $request->request->all('form')['search'];
         $result = $ManifestationRepository->findByTitre($search);
         return $this->render('manifs/search.html.twig', [
-           'search' => $result
+           //'search' => dd($result)
+            'search' => $result
         ]);
     }
 }

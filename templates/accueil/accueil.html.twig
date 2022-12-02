@@ -2,7 +2,20 @@
 
 {% block title %}Accueil{% endblock %}
 
-{% block H1_class %}<div class="text-center" id="titre">{% endblock %}
-{% block H1 %}Accueil{% endblock %}
-{% block body %}
+{% block H1 %}<h1 id="titre">Prochainement</h1>{% endblock %}
+{% block content %}
+    <div class="flex-space-around presentation-spectacle">
+        {% for manifestation in manifs %}
+            <div class="flex-column flex-center taille-image">
+                <img src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+                <h2 class="manif_titre">{{ manifestation.getManifTitre }}</h2>
+                <p class="margin-5px">{{ manifestation.getManifGenre }}</p>
+                <p class="margin-5px">{{ manifestation.salle.getSalleNom }}</p>
+                <p class="margin-5px">{{ manifestation.getManifDate|date('d/m/Y') }}</p>
+                <div class="text-center margin-20px">
+                    <a class="bouton-commander text-center" href="{{ path('app_show', {'id': manifestation.getId }) }}">Réserver</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

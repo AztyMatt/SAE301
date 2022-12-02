@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block content %}
+    <div id="mon-profil">
+        <div class="flex-space-between margin-profil">
+            <div class="flex">
+                <h2>Mon compte</h2>
+                <a href=""><span class="material-icons margin-left" aria-hidden="true" data-icon="&#xe000;">edit</span></a>
+            </div>
+            <a class="block-desktop" href="">Mon historique de commande</a>
+        </div>
+        <div class="margin-profil">
+            <p class="p-info">Prénom : {{ user.prenom }}</p>
+            <p class="p-info">Nom : {{ user.nom }}</p>
+            <p class="p-info">Email : {{ user.email }}</p>
+            <p class="p-info">Mot de passe : *</p>
+        </div>
+        <a class="block-phone" href="">Mon historique de commande</a>
+    </div>
+{% endblock %}

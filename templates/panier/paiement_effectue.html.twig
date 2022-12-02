@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement confirmé{% endblock %}
+
+{% block H1 %}<h1 id="titre">Paiement confirmé</h1>{% endblock %}
+{% block content %}
+    <div class="text-center margin-bottom-100px">
+        <p>Votre paiement a bien été effectué.</p>
+        <p>Merci de votre confiance.</p>
+    </div>
+{% endblock %}
+{% block javascripts2 %}
+    <script>
+        document.cookie="cart=[]; path=/";
+    </script>
+{% endblock %}

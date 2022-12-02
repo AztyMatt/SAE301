@@ -1,21 +1,46 @@
 <header>
     <nav>
         <a href="{{ path('app_accueil') }}"><img class="logo"  src="{{ asset('images/logo.svg') }}" alt="logo"></a>
-        <ul>
+        <ul class="nav-desktop">
             <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
             <li><a href="{{ path('app_manifs') }}">Nos spectacles</a></li>
             <li><a href="{{ path('app_salles') }}">Nos salles</a></li>
         </ul>
-        <ul>
-                <li><a href="{{ path('app_accueil') }}">Panier</a></li>
+        <ul class="nav-desktop">
+                <li><a href="{{ path('app_panier') }}">Panier</a></li>
             {% if app.user %}
+                <li><a href="{{ path('app_compte') }}">Mon compte</a></li>
                 <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
-                Bienvenue {{ app.user.userIdentifier }}
             {% else %}
                 <li><a href="{{ path('app_login') }}">Connexion</a></li>
                 <li><a href="{{ path('app_register') }}">Inscription</a></li>
             {% endif %}
         </ul>
+
+        <div id="mySidenav" class="sidenav">
+            <a id="closeBtn" href="#" class="close">×</a>
+            <ul class="flex-column">
+                <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
+                <li><a href="{{ path('app_manifs') }}">Nos spectacles</a></li>
+                <li><a href="{{ path('app_salles') }}">Nos salles</a></li>
+                <li><a href="{{ path('app_panier') }}">Panier</a></li>
+                {% if app.user %}
+                <li><a href="{{ path('app_compte') }}">Mon compte</a></li>
+                <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>
+                {% else %}
+                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <a href="#" id="openBtn">
+              <span class="burger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+        </a>
     </nav>
 </header>
 

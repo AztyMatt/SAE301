@@ -2,38 +2,30 @@
 
 {% block title %}Register{% endblock %}
 
-{% block H1 %}Inscription{% endblock %}
-{% block body %}
+{% block H1 %}<h1 id="titre">Inscription</h1>{% endblock %}
+{% block content %}
 
     {{ form_start(registrationForm) }}
         <div class="input">
-            <div class="flex-space-between">
-                <label for="inputEmail">Email :</label><div id="message"></div>
-            </div>
+            <label for="inputEmail">Email :</label><div id="message"></div>
             {{ form_widget(registrationForm.email, {'attr': {'placeholder':'Votre adresse email'} }) }}
         </div>
 
         <div class="input">
-            <div class="flex-space-between">
-                <label for="inputPassword">Mot de passe :</label>
-            </div>
+            <label for="inputPassword">Mot de passe :</label>
             {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder':'Votre mot de passe'} }) }}
         </div>
         <div class="input">
-            <div class="flex-space-between">
-                <label for="inputPassword">Nom :</label>
-            </div>
+            <label for="inputPassword">Nom :</label>
             {{ form_widget(registrationForm.nom, {'attr': {'placeholder':'Votre nom'} }) }}
         </div>
         <div class="input">
-            <div class="flex-space-between">
-                <label for="inputPassword">Prenom :</label>
-            </div>
-        {{ form_widget(registrationForm.prenom, {'attr': {'placeholder':'Votre prenom'} }) }}
+            <label for="inputPassword">Prenom :</label>
+            {{ form_widget(registrationForm.prenom, {'attr': {'placeholder':'Votre prenom'} }) }}
         </div>
-        <div class="flex flex-row flex-align">
-            <p>Accepter nos CGU</p>
-            {{ form_widget(registrationForm.agreeTerms, {'attr': {'class':'checkbox'} }) }}
+        <div class="check-box margin-10px">
+            {{ form_widget(registrationForm.agreeTerms, {'attr': {'id':'conditions'} }) }}
+            <label class="text-center" for="conditions">J'accepte les CGU</label>
         </div>
         <input type="submit" class="bouton" value="S'inscrire">
     {{ form_end(registrationForm) }}

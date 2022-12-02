@@ -2,23 +2,39 @@
 
 {% block title %}{{ manifestation.getManifTitre }}{% endblock %}
 
-{% block H1 %}{{ manifestation.getManifTitre }}{% endblock %}
-{% block body %}
-    <div class="flex-space-between margin-bottom-100px background">
-        <div class="flex">
-            <img class="affiche" src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
-            <div class="flex-column flex-space-between">
-                <div>
-                    <p class="margin-5px side">Genre : {{ manifestation.getManifGenre }}</p>
-                    <p class="margin-5px side">{{ manifestation.getManifDescription }}</p>
-                    <p class="margin-5px side">Casting : {{ manifestation.getManifCasting }}</p>
-                    <p class="margin-5px side">Salle : {{ manifestation.salle.getSalleNom }}</p>
-                    <p class="margin-5px side">Le {{ manifestation.getManifDate|date('d/m/Y') }} à {{ manifestation.getManifHoraire|date('H:i') }}</p>
-                </div>
-                <div class="flex flex-end">
-                    <button class="bouton-achat margin-10px side">Acheter</button>
+{% block H1 %}<h1 id="titre">{{ manifestation.getManifTitre }}</h1>{% endblock %}
+{% block content %}
+    <div class="flex-billeterie margin-bottom-100px">
+        <div class="flex flex-column-billeterie">
+            <div class="flex flex-center">
+                <img id="affiche" src="{{ asset('images/manifs/' ~ manifestation.getManifAffiche) }}" alt="Affiche de '{{ manifestation.getManifTitre() }}'"/>
+            </div>
+            <div class="margin-20px">
+                <div class="info">
+                    <p class="p-info"><span class="color-tonique">Genre</span> : {{ manifestation.getManifGenre }}</p>
+                    <p class="p-info"><span class="color-tonique">Casting</span> : {{ manifestation.getManifCasting }}</p>
+                    <p class="p-info"><span class="color-tonique">Date/Heure</span> : <span id="date">{{ manifestation.getManifDate|date('d/m/Y') }} à {{ manifestation.getManifHoraire|date('H:i') }}</span></p>
+                    <p class="p-info"><span class="color-tonique">Salle</span> : <span id="salle">{{ manifestation.salle.getSalleNom }}</span></p>
+                    <p class="p-info"><span class="color-tonique">Prix</span> : <span class="prix" id="prix">{{ manifestation.getManifPrix }}</span><span class="prix">€</span></p>
+                    <p>{{ manifestation.getManifDescription }}</p>
                 </div>
             </div>
         </div>
+        <div id="billeterie">
+            <h2 class="text-center margin-bottom-50px">Billetterie</h2>
+            <div class="flex-center">
+                <p class="margin-10px">Nombre de places :</p>
+                <input id="qte" type="number" min="1" max="100" value="1">
+                <input type="hidden" id="id" value="{{ manifestation.getId }}">
+            </div>
+            <div class="flex-center flex-column">
+                <button id="ajout" class="bouton-achat margin-20px">Acheter</button>
+                <p id="message"></p>
+            </div>
+        </div>
     </div>
+{% endblock %}
+{% block javascripts2 %}
+    <script type="text/javascript" src="{{ asset('js/general.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/articles.js') }}"></script>
 {% endblock %}

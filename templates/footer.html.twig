@@ -1,24 +1,22 @@
 <footer>
-    <div id="footer">
-        <div>
-            <h3 class="text-center">Politique de confidentialité</h3>
-        </div>
-        <div>
-            <h3 class="text-center">Mairie de Saint Quentin en Yvelines</h3>
-            <p>Place Georges Pompidou - CS 80317</p>
-            <p>78054 Saint Quentin en Yvelines</p>
-            <p>Adresse mail : <span class="tonic">administration@sqy_culture.org</span></p>
-            <p>Administration : <span class="tonic">01 30 96 99 30</span></p>
-            <p>Billetterie : <span class="tonic">01 30 96 99 00</span></p>
-        </div>
-        <div>
-            <h3 class="text-center">Suivez-nous</h3>
-            <div>
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-                <img src="" alt="">
-            </div>
+    <div class="footer-margin">
+        <a href="{{ path('app_confidentialite') }}"><h2 class="lien-inern-noir">Politique de confidentialité</h2></a>
+    </div>
+    <div class="footer-margin">
+        <h2>Mairie de Saint Quentin en Yvelines</h2>
+        <p class="margin-10px">Place Georges Pompidou - CS 80317</p>
+        <p class="margin-10px">78054 Saint Quentin en Yvelines</p>
+        <p class="margin-10px"><span class="color-tonique">administration@tsqy.org</span></p>
+        <p class="margin-10px"><span class="color-tonique">admin. 01 30 96 99 30</span></p>
+        <p class="margin-10px"><span class="color-tonique">billett. 01 30 96 99 00</span></p>
+    </div>
+    <div>
+        <h2 class="text-center">Suivez-nous</h2>
+        <div class="flex-space-evenly">
+            <a class="margin-10px" href=""><img src="{{ asset('images/social_media/youtube-fill.svg') }}" alt="logo youtube"></a>
+            <a class="margin-10px" href=""><img src="{{ asset('images/social_media/facebook-circle-fill.svg') }}" alt="logo facebook"></a>
+            <a class="margin-10px" href=""><img src="{{ asset('images/social_media/twitter-fill.svg') }}" alt="logo twitter') }}" alt="logo twitter"></a>
+            <a class="margin-10px" href=""><img src="{{ asset('images/social_media/instagram-fill.svg') }}" alt="logo instagram"></a>
         </div>
     </div>
 </footer>

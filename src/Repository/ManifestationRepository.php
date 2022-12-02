@@ -50,13 +50,13 @@ class ManifestationRepository extends ServiceEntityRepository
         ;
     }
 
-//    public function findOneBySomeField($value): ?Manifestation
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByHighest(): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.manif_date', 'ASC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

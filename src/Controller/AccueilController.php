@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
+use App\Repository\ManifestationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccueilController extends AbstractController
 {
-    #[Route('/', name: 'app_accueil')]
-    public function index(): Response
+    #[Route(path: '/', name: 'app_accueil')]
+    public function searchBar(ManifestationRepository $manifsRepository)
     {
+        $manifs = $manifsRepository->findByHighest();
+
         return $this->render('accueil/accueil.html.twig', [
-            'controller_name' => 'AccueilController',
+            'manifs' => $manifs
         ]);
     }
 }

@@ -16,5 +16,3 @@ if (liste !== null){
     document.cookie="cart=[]; path=/";
     montab =Array();
 }
-console.log(montab);
-console.log(liste);

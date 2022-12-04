@@ -22,12 +22,9 @@
         </div>
     </div>
     <div class="panier">
-        <div class="flex-space-between margin-bottom-50px">
-            <h2>Mon panier</h2>
-        </div>
         <div id="zone"></div>
     </div>
-    <div class="text-center">
+    <div class="text-center tag-total">
         <p class="block-phone">Montant total : <span class="total"></span>€</p>
     </div>
     </div>
@@ -41,7 +38,7 @@
         <div class="margin-bouton">
             <a class="bouton-commander" href="{{ path('app_manifs') }}">Continuer vos achats</a>
         </div>
-        {{ form_start(form, {'attr': {'action': path('app_search'), 'class':'commander' } }) }}
+        {{ form_start(form, {'attr': {'class':'commander' } }) }}
         <input type="hidden" name="liste" id="liste">
         <input class="bouton-commander" type="submit" value="Valider ma commande">
         {{ form_end(form) }}

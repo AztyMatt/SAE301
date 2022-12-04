@@ -7,10 +7,9 @@ document.getElementById('ajout').addEventListener('click',function() {
     let quantite = parseInt(document.getElementById('qte').value);
     let prix = parseInt(document.getElementById('prix').innerHTML);
 
-    let index = montab.findIndex(element => element.id === id); //trouver l'article dans la liste du panier
+    let index = montab.findIndex(element => element.id === id);
     if(index>-1){
         montab[index].quantite +=  parseInt(document.getElementById('qte').value);
-        console.log(montab);
     }else{
         montab.push({
             'id': id,
@@ -21,9 +20,8 @@ document.getElementById('ajout').addEventListener('click',function() {
             'quantite': quantite,
             'prix': prix });
     }
-    console.log(montab);
     let insertion = JSON.stringify(montab);
-    document.cookie=`cart=${insertion}; path=/`;  // sauvegarde des infos dans le cookie "liste"
+    document.cookie=`cart=${insertion}; path=/`;
 
     document.getElementById('message').innerHTML = `${quantite} place(s) pour ${titre} ajoutée(s) au panier !`
 })

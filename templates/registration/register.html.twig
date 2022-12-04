@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
-{% block H1 %}<h1 id="titre">Inscription</h1>{% endblock %}
+{% block H1 %}{% endblock %}
 {% block content %}
 
     {{ form_start(registrationForm) }}
+        <h2>Inscription</h2>
         <div class="input">
             <label for="inputEmail">Email :</label><div id="message"></div>
             {{ form_widget(registrationForm.email, {'attr': {'placeholder':'Votre adresse email'} }) }}

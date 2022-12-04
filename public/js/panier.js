@@ -16,9 +16,15 @@ if (liste !== null){
     document.cookie="cart=[]; path=/";
     montab =Array();
 }
-console.log(montab);
-console.log(liste);
 
+console.log(montab)
+if (montab.length === 0){
+    const elements = document.getElementById('zone').parentNode.parentNode.querySelectorAll('.file, .tag-total, .text-right, .commander')
+        for (const element of elements){
+            element.classList.add('none');
+    }
+    document.getElementById('zone').innerHTML = `<h2 class="text-center">Votre panier est vide !</h2>`
+}
 document.getElementById('liste').value=JSON.stringify(montab);
 
 var totalgeneral=0
@@ -45,7 +51,6 @@ montab.forEach(uneinfo => {
     </div>`
     document.getElementById('zone').innerHTML += html
     totalgeneral += uneinfo.prix * uneinfo.quantite
-    console.log(totalgeneral)
     document.querySelector('.total').innerHTML=totalgeneral;
     document.querySelector('.total2').innerHTML=totalgeneral;
 
@@ -57,24 +62,18 @@ document.querySelectorAll('.moins').forEach(clickmoins)
 function clickplus(tag){
     tag.addEventListener('click',function() {
         qte=this.parentNode.querySelector('span').innerHTML;
-        console.log(qte)
         qte++;
         this.parentNode.querySelector('span').innerHTML=qte;
         prix=this.parentNode.parentNode.querySelector('.unitaire').innerHTML;
-        console.log(prix)
         total= prix*qte;
-        console.log(total)
         this.parentNode.parentNode.querySelector('.prix').innerHTML=total;
 
-        let id = this.parentNode.id; // recupere l'id de l'article cliqué
-        console.log(id)
-        let index = montab.findIndex(element => element.id == id); //trouver l'article dans la liste du panier
-        console.log(index)
-        montab[index].quantite	= parseInt(montab[index].quantite) +1; //incrementer la quantité
+        let id = this.parentNode.id;
+        let index = montab.findIndex(element => element.id == id);
+        montab[index].quantite	= parseInt(montab[index].quantite) +1;
         let insertion = JSON.stringify(montab);
-        console.log(insertion)
-        document.cookie=`cart=${insertion}; path=/`;  // sauvegarde des infos dans le cookie "liste"
-        document.getElementById('liste').value=JSON.stringify(montab); // sauver montab pour le formulaire
+        document.cookie=`cart=${insertion}; path=/`;
+        document.getElementById('liste').value=JSON.stringify(montab);
 
         totalgeneral += parseInt(prix);
         document.querySelector('.total').innerHTML=totalgeneral;
@@ -85,29 +84,23 @@ function clickplus(tag){
 function clickmoins(tag){
     tag.addEventListener('click',function() {
         qte=this.parentNode.querySelector('span').innerHTML;
-        console.log(qte)
         if(qte>0){
             qte--;
             this.parentNode.querySelector('span').innerHTML=qte;
             prix=this.parentNode.parentNode.querySelector('.unitaire').innerHTML;
-            console.log(prix)
             total= prix*qte;
-            console.log(total)
             this.parentNode.parentNode.querySelector('.prix').innerHTML=total;
 
-            let id = this.parentNode.id; // recupere l'id de l'article cliqué
-            console.log(id)
-            let index = montab.findIndex(element => element.id == id); //trouver l'article dans la liste du panier
-            console.log(index)
-            montab[index].quantite= parseInt(montab[index].quantite) -1; //incrementer la quantité
+            let id = this.parentNode.id;
+            let index = montab.findIndex(element => element.id == id);
+            montab[index].quantite= parseInt(montab[index].quantite) -1;
             let insertion = JSON.stringify(montab);
-            console.log(insertion)
-            document.cookie=`cart=${insertion}; path=/`;  // sauvegarde des infos dans le cookie "liste"
-            document.getElementById('liste').value=JSON.stringify(montab); // sauver montab pour le formulaire
+            document.cookie=`cart=${insertion}; path=/`;
+            document.getElementById('liste').value=JSON.stringify(montab);
 
             totalgeneral -= parseInt(prix);
             document.querySelector('.total').innerHTML=totalgeneral;
             document.querySelector('.total2').innerHTML=totalgeneral;
-            }
+        }
     })
 }

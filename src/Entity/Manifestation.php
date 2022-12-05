@@ -16,7 +16,7 @@ class Manifestation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 50)]
     private ?string $manif_titre = null;
 
     #[ORM\Column(type: Types::TEXT)]

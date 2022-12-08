@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Repository\SalleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 
 class SallesController extends AbstractController
 {

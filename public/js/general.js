@@ -16,3 +16,9 @@ if (liste !== null){
     document.cookie="cart=[]; path=/";
     montab =Array();
 }
+
+var panier = 0;
+montab.forEach(element => { panier += parseInt(element.quantite) });
+if (panier !== 0){
+    document.getElementById('nb-panier').innerHTML = panier;
+}

@@ -17,21 +17,28 @@ if (liste !== null){
     montab =Array();
 }
 
-console.log(montab)
-if (montab.length === 0){
-    const elements = document.getElementById('zone').parentNode.parentNode.querySelectorAll('.file, .tag-total, .text-right, .commander')
-        for (const element of elements){
-            element.classList.add('none');
+function test_tab(){
+    if (montab.length === 0){
+        const elements = document.getElementById('zone').parentNode.parentNode.querySelectorAll('.file, .tag-total, .text-right, .commander')
+            for (const element of elements){
+                element.classList.add('none');
+        }
+        document.getElementById('zone').innerHTML = `<h2 class="text-center">Votre panier est vide !</h2>`
     }
-    document.getElementById('zone').innerHTML = `<h2 class="text-center">Votre panier est vide !</h2>`
+    document.getElementById('liste').value=JSON.stringify(montab);
+
+    var panier = 0;
+    montab.forEach(element => { panier += parseInt(element.quantite) });
+    document.getElementById('nb-panier').innerHTML = panier;
 }
-document.getElementById('liste').value=JSON.stringify(montab);
+
+test_tab();
 
 var totalgeneral=0
 montab.forEach(uneinfo => {
 
     let html = `
-    <div class="flex grid">
+    <div id="${uneinfo.id}" class="flex grid">
         <div class="images-panier">
             <img src="../${(uneinfo.affiche)}" alt="affiche de ${uneinfo.titre}">
         </div>
@@ -46,18 +53,18 @@ montab.forEach(uneinfo => {
             <p class="margin-panier">Total : <span class="prix">${uneinfo.prix * uneinfo.quantite}</span>€</p>
         </div>
         <div class="flex-center">
-            <a href=""><span class="material-icons">delete</span></a>
+            <span class="material-icons supp">delete</span>
         </div>
     </div>`
     document.getElementById('zone').innerHTML += html
     totalgeneral += uneinfo.prix * uneinfo.quantite
     document.querySelector('.total').innerHTML=totalgeneral;
     document.querySelector('.total2').innerHTML=totalgeneral;
-
-
 })
+
 document.querySelectorAll('.plus').forEach(clickplus)
 document.querySelectorAll('.moins').forEach(clickmoins)
+document.querySelectorAll('.supp').forEach(supp)
 
 function clickplus(tag){
     tag.addEventListener('click',function() {
@@ -78,6 +85,7 @@ function clickplus(tag){
         totalgeneral += parseInt(prix);
         document.querySelector('.total').innerHTML=totalgeneral;
         document.querySelector('.total2').innerHTML=totalgeneral;
+        test_tab();
     })
 }
 
@@ -101,6 +109,25 @@ function clickmoins(tag){
             totalgeneral -= parseInt(prix);
             document.querySelector('.total').innerHTML=totalgeneral;
             document.querySelector('.total2').innerHTML=totalgeneral;
+            test_tab();
         }
+    })
+}
+
+function supp(tag){
+    tag.addEventListener('click',function() {
+        let id=this.parentNode.parentNode.id;
+        let element = document.getElementById(id);
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
+        }
+        element.remove();
+
+        let index = montab.findIndex(element => element.id == id);
+        montab.splice(index, 1);
+        let insertion = JSON.stringify(montab);
+        document.cookie=`cart=${insertion}; path=/`;
+        document.getElementById('liste').value=JSON.stringify(montab);
+        test_tab();
     })
 }

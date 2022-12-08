@@ -7,7 +7,7 @@
             <li><a href="{{ path('app_salles') }}">Nos salles</a></li>
         </ul>
         <ul class="nav-desktop">
-                <li><a href="{{ path('app_panier') }}">Panier</a></li>
+                <li><a href="{{ path('app_panier') }}">Panier</a><span id="nb-panier"></span></li>
             {% if app.user %}
                 <li><a href="{{ path('app_compte') }}">Mon compte</a></li>
                 <li><a href="{{ path('app_logout') }}">Deconnexion</a></li>

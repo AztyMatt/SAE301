@@ -23,5 +23,10 @@ document.getElementById('ajout').addEventListener('click',function() {
     let insertion = JSON.stringify(montab);
     document.cookie=`cart=${insertion}; path=/`;
 
+    var panier = 0;
+    montab.forEach(element => { panier += parseInt(element.quantite) });
+    if (panier !== 0){
+        document.getElementById('nb-panier').innerHTML = panier;
+    }
     document.getElementById('message').innerHTML = `${quantite} place(s) pour ${titre} ajoutée(s) au panier !`
 })

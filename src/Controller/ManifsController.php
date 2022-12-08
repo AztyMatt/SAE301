@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Manifestation;
 use App\Repository\ManifestationRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
